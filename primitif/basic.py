@@ -14,8 +14,8 @@ def draw_margin(width, height, margin, c=[0,0,0,255]):
 
 def draw_grid(width, height, margin, c=[0,0,0,255]):
     # Sumbu Y
-    xa = margin;
-    ya = 2*margin;
+    xa = margin
+    ya = 2*margin
     xb = width - xa
     yb = height - ya
     y_range = (height / margin)
@@ -143,11 +143,12 @@ def ellips(xc, yc, Rx, Ry):
 
 # use boundary fill algorithm to fill the shape
 def fill_bentuk4(x, y, c, boundary_color):
-    col = py5.stroke(c[0], c[1], c[2], c[3])
-    bc = py5.stroke(boundary_color[0], boundary_color[1], boundary_color[2], boundary_color[3])
+    col = py5.color(c[0], c[1], c[2], c[3])
+    bc = py5.color(boundary_color[0], boundary_color[1], boundary_color[2], boundary_color[3])
     if (py5.get_pixels(x, y) != col) and (py5.get_pixels(x, y) != bc):
+        py5.stroke(c[0], c[1], c[2], c[3])
         py5.point(x, y)
-        fill_bentuk4(x+1, y, col, boundary_color)
-        fill_bentuk4(x-1, y, col, boundary_color)
-        fill_bentuk4(x, y+1, col, boundary_color)
-        fill_bentuk4(x, y-1, col, boundary_color)
+        fill_bentuk4(x+1, y, c, boundary_color)
+        fill_bentuk4(x-1, y, c, boundary_color)
+        fill_bentuk4(x, y+1, c, boundary_color)
+        fill_bentuk4(x, y-1, c, boundary_color)
