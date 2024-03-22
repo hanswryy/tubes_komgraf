@@ -25,6 +25,6 @@ class NewTowerFloor:
         # c as fill color
         c = [255, 0, 0, 255]
         # bd as boundary color (which is black)
-        bd = [0, 0, 0, 255]
+        bd = [0,0,0,255]
         primitif.basic.draw_bentuk(pp, bd)
-        # primitif.basic.fill_bentuk4(700, 410, c, bd)
+        primitif.basic.fillShape2(700, 410, c, 700+(int(self.panjang/2)), self.y)

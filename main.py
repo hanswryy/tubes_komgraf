@@ -8,6 +8,7 @@ import math
 import config
 import tower
 import bg
+import sys
 
 wid = 1400
 hei = 820
@@ -16,6 +17,8 @@ def setup():
     # set the window to be fullscreen
     py5.size(wid, hei)
     py5.color_mode(py5.RGB, 255, 255, 255, 255)
+    
+    sys.setrecursionlimit(1000000)
 
     # create the background
     bg.createBG()
@@ -24,11 +27,8 @@ def setup():
     # TODO: create a class for the crane tower
 
     primitif.basic.draw_margin(wid, hei, 20)
-    crane = tower.Crane()
-    t1 = tower.NewTowerFloor(700, 410, 100, 50)
-    c = py5.get_pixels(750, 411)
-    print(round(py5.red(c)*255/74), round(py5.green(c)*255/74), round(py5.blue(c)*255/74), c, "\n", py5.color(0, 0, 0, 255))
-
+    # crane = tower.Crane()
+    # t1 = tower.NewTowerFloor(700, 410, 20, 10)
     # iM = primitif.matrix.identity_matrix()
     # tm = primitif.transformasi.rotate2D(45, 0, 0, iM)
     # print(tm)
@@ -38,9 +38,21 @@ def setup():
     # print(tm)
     # persegi2 = primitif.transformasi.transformPoints2D(persegi,tm)
     # primitif.basic.draw_bentuk(persegi2)
-    
+
+cc = 0
 
 def draw():
-    pass
+    global cc
+    if cc == 0:
+        crane = tower.Crane()
+        t1 = tower.NewTowerFloor(700, 410, 20, 10)
+        cc = 1
+
+def mouse_pressed():
+    if py5.mouse_button == py5.LEFT:
+        mx = py5.mouse_x
+        my = py5.mouse_y
+        c = py5.get_pixels(mx, my)
+        print(py5.red(c), py5.green(c), py5.blue(c), py5.alpha(c))
 
 py5.run_sketch()
