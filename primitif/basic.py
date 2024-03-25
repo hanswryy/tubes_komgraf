@@ -80,6 +80,19 @@ def segitiga_siku(xa, ya, alas, tinggi):
         axis=0
     )
 
+# draw equilateral triangle with x y as center
+def segitiga(x, y, alas, tinggi):
+    xa = int(x - (alas / 2))
+    ya = int(y - (tinggi / 2))
+    return np.concatenate(
+        (
+            primitif.line.line_bresenham(xa, ya, xa + alas, ya),
+            primitif.line.line_bresenham(xa, ya, x, ya + tinggi),
+            primitif.line.line_bresenham(xa + alas, ya, x, ya + tinggi)
+        ),
+        axis=0
+    )
+
 def trapesium_siku(xa, ya, aa, ab, tinggi):
     return np.concatenate(
         (
@@ -141,78 +154,78 @@ def ellipsePlotPoints(xc, yc, x, y):
 def ellips(xc, yc, Rx, Ry):
     pass
 
-def getBColorInfo(refx, refy):
-    c = py5.get_pixels(refx, refy)
-    return py5.get_pixels(refx, refy)
+# def getBColorInfo(refx, refy):
+#     c = py5.get_pixels(refx, refy)
+#     return py5.get_pixels(refx, refy)
 
-def getFColorInfo(x, y, c):
-    py5.stroke(c[0], c[1], c[2], c[3])
-    py5.point(x, y)
-    return py5.get_pixels(x, y)
+# def getFColorInfo(x, y, c):
+#     py5.stroke(c[0], c[1], c[2], c[3])
+#     py5.point(x, y)
+#     return py5.get_pixels(x, y)
 
-# use boundary fill algorithm to fill the shape
-def fill_bentuk41(x, y, c, bc):
-    print("41")
-    if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
-        py5.stroke(c)
-        py5.point(x, y)
-        fill_bentuk41(x+1, y, c, bc)
-        fill_bentuk41(x, y+1, c, bc)
+# # use boundary fill algorithm to fill the shape
+# def fill_bentuk41(x, y, c, bc):
+#     print("41")
+#     if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
+#         py5.stroke(c)
+#         py5.point(x, y)
+#         fill_bentuk41(x+1, y, c, bc)
+#         fill_bentuk41(x, y+1, c, bc)
 
-def fill_bentuk42(x, y, c, bc):
-    print("42")
-    if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
-        py5.stroke(c)
-        py5.point(x, y)
-        fill_bentuk42(x-1, y, c, bc)
-        fill_bentuk42(x, y+1, c, bc)
+# def fill_bentuk42(x, y, c, bc):
+#     print("42")
+#     if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
+#         py5.stroke(c)
+#         py5.point(x, y)
+#         fill_bentuk42(x-1, y, c, bc)
+#         fill_bentuk42(x, y+1, c, bc)
 
-def fill_bentuk43(x, y, c, bc):
-    print("43")
-    if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
-        py5.stroke(c)
-        py5.point(x, y)
-        fill_bentuk43(x-1, y, c, bc)
-        fill_bentuk43(x, y-1, c, bc)
+# def fill_bentuk43(x, y, c, bc):
+#     print("43")
+#     if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
+#         py5.stroke(c)
+#         py5.point(x, y)
+#         fill_bentuk43(x-1, y, c, bc)
+#         fill_bentuk43(x, y-1, c, bc)
 
-def fill_bentuk44(x, y, c, bc):
-    print("44")
-    if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
-        py5.stroke(c)
-        py5.point(x, y)
-        fill_bentuk44(x+1, y, c, bc)
-        fill_bentuk44(x, y-1, c, bc)
+# def fill_bentuk44(x, y, c, bc):
+#     print("44")
+#     if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
+#         py5.stroke(c)
+#         py5.point(x, y)
+#         fill_bentuk44(x+1, y, c, bc)
+#         fill_bentuk44(x, y-1, c, bc)
 
-def fillShape2(x, y, c, refx, refy):
-    current_color = py5.get_pixels(x, y)
-    c = getFColorInfo(x, y, c)
-    bc = getBColorInfo(refx, refy)
-    py5.stroke(current_color)
-    py5.point(x, y)
-    fill_bentuk41(x, y, c, bc)
-    fill_bentuk42(x, y, c, bc)
-    fill_bentuk43(x, y, c, bc)
-    fill_bentuk44(x, y, c, bc)
+# def fillShape2(x, y, c, refx, refy):
+#     current_color = py5.get_pixels(x, y)
+#     c = getFColorInfo(x, y, c)
+#     bc = getBColorInfo(refx, refy)
+#     py5.stroke(current_color)
+#     py5.point(x, y)
+#     fill_bentuk41(x, y, c, bc)
+#     fill_bentuk42(x, y, c, bc)
+#     fill_bentuk43(x, y, c, bc)
+#     fill_bentuk44(x, y, c, bc)
 
-def fillShape(x, y, c, refx, refy):
-    current_color = py5.get_pixels(x, y)
+# def fillShape(x, y, c, refx, refy):
+#     current_color = py5.get_pixels(x, y)
     
-    c = getFColorInfo(x, y, c)
-    bc = getBColorInfo(refx, refy)
+#     c = getFColorInfo(x, y, c)
+#     bc = getBColorInfo(refx, refy)
 
-    py5.stroke(current_color)
-    py5.point(x, y)
+#     py5.stroke(current_color)
+#     py5.point(x, y)
 
-    stack = [(x, y)]
+    # stack = [(x, y)]
 
-    while stack:
-        x, y = stack.pop()
-        if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
-            py5.stroke(c)
-            py5.point(x, y)
-            stack.append((x + 1, y))
-            stack.append((x, y + 1))
-            stack.append((x - 1, y))
-            stack.append((x, y - 1))
+    # while stack:
+    #     x, y = stack.pop()
+    #     if (py5.get_pixels(x, y) != c) and (py5.get_pixels(x, y) != bc):
+    #         py5.stroke(c)
+    #         py5.point(x, y)
+    #         stack.append((x + 1, y))
+    #         stack.append((x, y + 1))
+    #         stack.append((x - 1, y))
+    #         stack.append((x, y - 1))
 
     

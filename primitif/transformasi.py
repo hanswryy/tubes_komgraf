@@ -26,7 +26,6 @@ def rotate2D(a, refx, refy, tm=matrix.zero_matrix3x3()):
     m[0][2] = refx * (1-math.cos(a)) + refy * math.sin(a)
     m[1][2] = refy * (1-math.cos(a)) - refx * math.sin(a)
     resM = matrix.mul_matrix3x3(m, tm)
-    print(resM)
     return resM
 
 def transformPoints2D(pts, tm=matrix.zero_matrix3x3()):
